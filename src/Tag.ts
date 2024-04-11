@@ -37,10 +37,10 @@ export enum ValueType {
 }
 
 export default class TagPayload {
-  public payloads: number[] = [];
-  public edicts: bigint[] = [];
+  payloads: number[] = [];
+  edicts: bigint[] = [];
 
-  public tagMap = new Map<number, bigint[]>();
+  tagMap = new Map<number, bigint[]>();
 
   constructor(buff?: Buffer) {
     if (!buff) {

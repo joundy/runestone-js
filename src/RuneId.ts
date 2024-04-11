@@ -1,8 +1,8 @@
 import { U32, U64 } from "big-varuint-js";
 
 export class RuneId {
-  block;
-  tx;
+  readonly block;
+  readonly tx;
 
   constructor(block: U64, tx: U32) {
     this.block = block;

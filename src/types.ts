@@ -1,7 +1,6 @@
 import { U128, U32, U64, U8 } from "big-varuint-js";
 import { RuneId } from "./RuneId";
-
-export type Rune = U128;
+import { Rune } from "./Rune";
 
 export type Edict = {
   id: RuneId;

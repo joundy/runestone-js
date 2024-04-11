@@ -4,12 +4,13 @@ import { Tag, ValueType } from "./Tag";
 import Flag, { FlagEnum } from "./Flag";
 import TagPayload from "./Tag";
 import { RuneId } from "./RuneId";
+import { Rune } from "./Rune";
 
 export default class Runestone {
-  private edicts: Edict[];
-  private etching?: Etching;
-  private mint?: RuneId;
-  private pointer?: U32;
+  readonly edicts: Edict[];
+  readonly etching?: Etching;
+  readonly mint?: RuneId;
+  readonly pointer?: U32;
 
   constructor(runestone: RunestoneParams) {
     this.edicts = runestone.edicts;
@@ -33,7 +34,7 @@ export default class Runestone {
             ValueType.U8,
           ) as U8,
           premine: tagPayload.getValue(Tag.Premine, ValueType.U128) as U128,
-          rune: tagPayload.getValue(Tag.Rune, ValueType.U128) as U128,
+          rune: new Rune(tagPayload.getValue(Tag.Rune, ValueType.U128) as U128),
           spacers: tagPayload.getValue(Tag.Spacers, ValueType.U32) as U32,
           symbol: tagPayload.getValue(Tag.Symbol, ValueType.U8) as U128,
           terms: flag.hasFlag(FlagEnum.Terms)
@@ -60,10 +61,13 @@ export default class Runestone {
       }
     }
     const pointer = tagPayload.getValue(Tag.Pointer, ValueType.U32) as U32;
-    const mint = new RuneId(
-      tagPayload.getValue(Tag.Mint, ValueType.U64, 0) as U64,
-      tagPayload.getValue(Tag.Mint, ValueType.U32, 1) as U32,
-    );
+
+    const runeIdBlock = tagPayload.getValue(Tag.Mint, ValueType.U64, 0) as U64;
+    const runeIdTx = tagPayload.getValue(Tag.Mint, ValueType.U64, 1) as U64;
+    let mint;
+    if (runeIdBlock && runeIdTx) {
+      mint = new RuneId(runeIdBlock, runeIdTx);
+    }
 
     const edicts: Edict[] = [];
     const edictsP = tagPayload.edicts;
@@ -113,7 +117,7 @@ export default class Runestone {
       }
       tag.encodeTagPush(Tag.Flags, flag.toValue());
 
-      tag.encodeTagPush(Tag.Rune, etching.rune);
+      tag.encodeTagPush(Tag.Rune, etching.rune?.rune);
       tag.encodeTagPush(Tag.Divisibility, etching.divisibility);
       tag.encodeTagPush(Tag.Spacers, etching.spacers);
       tag.encodeTagPush(Tag.Premine, etching.premine);
