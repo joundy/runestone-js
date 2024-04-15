@@ -1,12 +1,12 @@
 import { U128, U32, U64, U8 } from "big-varuint-js";
 import { Edict, Etching, RunestoneParams } from "./types";
 import { Tag, ValueType } from "./Tag";
-import Flag, { FlagEnum } from "./Flag";
-import TagPayload from "./Tag";
+import { Flag, FlagEnum } from "./Flag";
+import { TagPayload } from "./Tag";
 import { RuneId } from "./RuneId";
 import { Rune } from "./Rune";
 
-export default class Runestone {
+export class Runestone {
   readonly edicts: Edict[];
   readonly etching?: Etching;
   readonly mint?: RuneId;
@@ -39,23 +39,23 @@ export default class Runestone {
           symbol: tagPayload.getValue(Tag.Symbol, ValueType.U8) as U128,
           terms: flag.hasFlag(FlagEnum.Terms)
             ? {
-              amount: tagPayload.getValue(Tag.Amount, ValueType.U128) as U128,
-              cap: tagPayload.getValue(Tag.Cap, ValueType.U128) as U128,
-              height: {
-                start: tagPayload.getValue(
-                  Tag.HeightStart,
-                  ValueType.U64,
-                ) as U64,
-                end: tagPayload.getValue(Tag.HeightEnd, ValueType.U64) as U64,
-              },
-              offset: {
-                start: tagPayload.getValue(
-                  Tag.OffsetStart,
-                  ValueType.U64,
-                ) as U64,
-                end: tagPayload.getValue(Tag.OffsetEnd, ValueType.U64) as U64,
-              },
-            }
+                amount: tagPayload.getValue(Tag.Amount, ValueType.U128) as U128,
+                cap: tagPayload.getValue(Tag.Cap, ValueType.U128) as U128,
+                height: {
+                  start: tagPayload.getValue(
+                    Tag.HeightStart,
+                    ValueType.U64,
+                  ) as U64,
+                  end: tagPayload.getValue(Tag.HeightEnd, ValueType.U64) as U64,
+                },
+                offset: {
+                  start: tagPayload.getValue(
+                    Tag.OffsetStart,
+                    ValueType.U64,
+                  ) as U64,
+                  end: tagPayload.getValue(Tag.OffsetEnd, ValueType.U64) as U64,
+                },
+              }
             : undefined,
         };
       }
@@ -152,7 +152,7 @@ export default class Runestone {
       this.edicts.sort((a, b) => {
         return Number(
           a.id.block.toValue() - b.id.block.toValue() ||
-          a.id.tx.toValue() - b.id.tx.toValue(),
+            a.id.tx.toValue() - b.id.tx.toValue(),
         );
       });
 

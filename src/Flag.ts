@@ -6,7 +6,7 @@ export enum FlagEnum {
   Cenotaph = 127,
 }
 
-export default class Flag {
+export class Flag {
   private flag: U8;
 
   constructor(value: U8) {

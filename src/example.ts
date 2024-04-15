@@ -1,5 +1,5 @@
 import { U128, U32, U64, U8 } from "big-varuint-js";
-import Runestone from "./Runestone";
+import { Runestone } from "./Runestone";
 import { RuneId } from "./RuneId";
 import { SpacedRune } from "./SpacedRune";
 

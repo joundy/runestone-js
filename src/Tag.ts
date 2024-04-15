@@ -36,7 +36,7 @@ export enum ValueType {
   U128,
 }
 
-export default class TagPayload {
+export class TagPayload {
   payloads: number[] = [];
   edicts: bigint[] = [];
 
