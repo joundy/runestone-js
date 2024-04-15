@@ -6,7 +6,7 @@
     "email": "contact@joundy.me",
     "url": "https://github.com/joundy"
   },
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Javascript ordinals runestone implementation",

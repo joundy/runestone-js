@@ -1,6 +1,7 @@
 import { U128, U32, U64, U8 } from "big-varuint-js";
 import { RuneId } from "./RuneId";
 import { Rune } from "./Rune";
+import { Symbol } from "./Symbol";
 
 export type Edict = {
   id: RuneId;
@@ -26,7 +27,7 @@ export type Etching = {
   premine?: U128;
   rune?: Rune;
   spacers?: U32;
-  symbol?: U8;
+  symbol?: Symbol;
   terms?: Terms;
 };
 

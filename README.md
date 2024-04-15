@@ -34,7 +34,7 @@ function exampleEncode() {
       rune: spacedRune.rune,
       spacers: spacedRune.spacers,
       premine: new U128(232390482390843242n),
-      symbol: new U8(1n),
+      symbol: Symbol.fromString("R"),
       terms: {
         amount: new U128(232323232323232390482390843242n),
         cap: new U128(532390482390843242n),
@@ -63,6 +63,10 @@ function exampleEncode() {
   //   buffer: Buffer(92) [ 2, 3, 4, 219, 230, 200, 158, 172, 179, 226, 247, 24, 3, 128, 2, 6, 234, 254, 217, 192, 153, 189, 231, 156, 3, 5, 1, 10, 234, 254, 137, 250, 190, 157, 153, 179, 175, 152, 152, 234, 234, 93, 8, 234, 254, 209, 133, 171, 202, 219, 177, 7, 12, 1, 14, 1, 16, 2, 18, 2, 22, 198, 192, 139, 194, 4, 20, 234, 254, 217, 192, 153, 189, 231, 156, 3, 20, 254, 248, 185, 9, 0, 10, 1, 23, 23, 0, 0, 215, 8, 174, 17 ],
   //   commitBuffer: Buffer(8) [ 91, 51, 210, 195, 154, 137, 239, 24 ],
   // }
+
+  console.log(JSON.stringify(runestone));
+  // output:
+  // {"edicts":[{"id":{"block":"10","tx":"1"},"amount":"23","output":"23"},{"id":{"block":"10","tx":"1"},"amount":"1111","output":"2222"}],"etching":{"rune":"RUNESTONECOIN","spacers":"256","premine":"232390482390843242","symbol":"R","terms":{"amount":"232323232323232390482390843242","cap":"532390482390843242","height":{"start":"1","end":"1"},"offset":{"start":"2","end":"2"}}},"mint":{"block":"232390482390843242","tx":"19823742"},"pointer":"1212342342"}
 }
 ```
 
@@ -87,7 +91,7 @@ function exampleDecodeFromTxBuffer() {
   // }
   console.log(JSON.stringify(runestone));
   // output:
-  // {"edicts":[],"etching":{"divisibility":"38","premine":"888888888888888","rune":"XVERSEFORTEST","spacers":"288","symbol":"88","terms":{"amount":"1000","cap":"21000","height":{},"offset":{}}},"pointer":"1"}
+  // {"edicts":[],"etching":{"divisibility":"38","premine":"888888888888888","rune":"XVERSEFORTEST","spacers":"288","symbol":"X","terms":{"amount":"1000","cap":"21000","height":{},"offset":{}}},"pointer":"1"}
 
   const spacedRune = new SpacedRune(
     runestone.etching?.rune!,
