@@ -9,6 +9,12 @@ This implementation is based on ord 0.17.1, \*use this as a reference only
 
 ## Example
 
+### Create Rune Coin + Inscription
+
+```
+https://github.com/joundy/bitcoin-rune-creator-js
+```
+
 ### enchiper
 
 ```
